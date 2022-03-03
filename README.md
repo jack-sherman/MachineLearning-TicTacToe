@@ -12,5 +12,16 @@ The general algorithm that I followed to implement this MCTS is as follows:
  The upper confidence bound (UCB) is calculated using the formula x + C(sqrt(ln(N/n))) where x is the mean value of a node, C is an exploration constant used to tune the amount that we want to deviate away from the best current optimal choice, N is the number of times the parent node has been visitied, and n is the number of times the node has been visited.
  The performance of this algorithm is tested with a static exploration constant + dynamic iteration number as well as a static iteration number + dynamic exploration constant.
 # Results:
- Constant Iterations:
+ Controlled number of iterations:
  
+![image](https://user-images.githubusercontent.com/47011094/156493905-36e49009-b33f-4402-a820-2dd0c829f966.png)
+
+Controlled exploration constant:
+
+![image](https://user-images.githubusercontent.com/47011094/156493925-1f8f273c-0f3a-4b95-842b-a1a1cf0453ed.png)
+
+I decided to control the exploration constant by keeping it at 3. I chose this because I wanted to have some degree of exploration, but not too much. We can see that as the number of iterations goes up, the loss rate tends to go down. In the cases above, the graph of the 1,000 iteration trial is displaying that the average loss rate is around the same as the average loss rate of the graph with 10,000 iterations. The idfference, however, is that the average number of turns drastically goes down. This means that the trial with 10,000 iterations is winning on its 3rd move much more often that the one with 1000. If this were 500 games using another algorithm like the minimax algorithm, the loss rate would be 0%. The loss rate should go closer to 0% when the number of iterations approaches the number of possible game states. We can also see that as the exploration constant gets higher with static iteration counts, the loss rate tends to increase. This is because the algorithm is exploring nodes that are not optimal.
+
+# Conclusion
+ From these 2 separate sets of trials, I can conclude that if I wanted to configure this implementation to behave more like more 'perfect' algorithms that have solved the game of Tic Tac Toe, I would want to use a low constalt like 1 or 2 and use a large number of iterations. Implementations that do not use optimal configurations honestly seem to do a decent job playing against imperfect players, but don't really cut it when it comes to playing against perfect players.
+
